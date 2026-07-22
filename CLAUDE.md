@@ -33,6 +33,7 @@ published: 2026-07-22
 description: "한 줄 요약"
 tags: [SLAM, ROS]
 category: SLAM        # SLAM | ROS | Sensor | Code | AI | Autonomous | Project | System | Book
+                      # 표기 규칙: 첫 글자만 대문자 (SLAM·ROS·AI 같은 약어는 예외)
 draft: false          # true면 프로덕션에서 숨김
 lang: ko
 ---
