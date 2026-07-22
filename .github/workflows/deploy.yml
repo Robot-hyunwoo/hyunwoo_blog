@@ -16,13 +16,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      # pnpm version is taken from the "packageManager" field in package.json
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      # withastro/action auto-detects pnpm from pnpm-lock.yaml and the
+      # "packageManager" field in package.json — do not pass versions here.
       - name: Build with Astro
         uses: withastro/action@v3
-        with:
-          package-manager: pnpm
 
   deploy:
     needs: build
