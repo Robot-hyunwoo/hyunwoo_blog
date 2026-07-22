@@ -31,7 +31,7 @@ HD Map 지도 변환을 다루고 있습니다.
 ## 주요 프로젝트
 
 - **3D LiDAR SLAM** (2024.02~08) — Wheel Odometry·IMU Factor를 통합한 Factor Graph 시스템, IMU-Wheel 비교 기반 Slip 감지. 2D SLAM 대비 평균 위치 오차 약 54% 감소
-- **Lifelong SLAM** (2023.11~2024.01) — 오픈소스 커스터마이징을 통한 맵 연장·수정, 기존 맵 고정 기능. 맵핑 실패 현장 2곳 문제 해결 → [블로그 글](/posts/lifelong-mapping/)
+- **Lifelong SLAM** (2023.11~2024.01) — 오픈소스 커스터마이징을 통한 맵 연장·수정, 기존 맵 고정 기능. 맵핑 실패 현장 2곳 문제 해결
 - **2D Pose Graph SLAM Optimization** (2023.06~11) — Scan Match Score 기반 Node Optimization, 비동기 처리 구조 설계. 200m × 200m 대규모 영역 맵핑 성공
 - **Landmark SLAM** (2023.06~11) — AprilTag/QR 기반 Landmark 인식과 Loop Closure, 2D LiDAR 실패 구간의 위치 복구
 - **Localization Fusion Module** (2025.01~04) — robot_localization 기반 센서 융합 아키텍처 재설계, AMCL 통합. TF 출력 12Hz → 30Hz (약 2.5배)
