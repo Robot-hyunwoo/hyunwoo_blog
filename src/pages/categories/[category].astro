@@ -1,0 +1,122 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import ImageWrapper from "../../components/misc/ImageWrapper.astro";
+import MainGridLayout from "../../layouts/MainGridLayout.astro";
+import { getCategorySlug } from "../../utils/url-utils";
+import { getPostUrlBySlug } from "../../utils/url-utils";
+
+export const getStaticPaths = (async () => {
+	const posts = await getCollection("posts", ({ data }) => {
+		return import.meta.env.PROD ? data.draft !== true : true;
+	});
+
+	// Collect distinct categories
+	const categories = new Map<string, string>();
+	for (const post of posts) {
+		const name = post.data.category?.toString().trim();
+		if (name) categories.set(getCategorySlug(name), name);
+	}
+
+	return Array.from(categories.entries()).map(([slug, name]) => ({
+		params: { category: slug },
+		props: { categoryName: name },
+	}));
+}) satisfies GetStaticPaths;
+
+const { categoryName } = Astro.props;
+
+const posts = await getCollection("posts", ({ data }) => {
+	const inCategory = data.category?.toString().trim() === categoryName;
+	return (import.meta.env.PROD ? data.draft !== true : true) && inCategory;
+});
+
+// Sort newest first by updated ?? published
+posts.sort((a, b) => {
+	const da = new Date(a.data.updated ?? a.data.published).getTime();
+	const db = new Date(b.data.updated ?? b.data.published).getTime();
+	return db - da;
+});
+
+// Group by year-month
+interface MonthGroup {
+	year: number;
+	month: number;
+	posts: typeof posts;
+}
+const groupsMap = new Map<string, MonthGroup>();
+for (const post of posts) {
+	const d = new Date(post.data.published);
+	const year = d.getFullYear();
+	const month = d.getMonth() + 1;
+	const key = `${year}-${month}`;
+	if (!groupsMap.has(key)) groupsMap.set(key, { year, month, posts: [] });
+	groupsMap.get(key)!.posts.push(post);
+}
+const groups = Array.from(groupsMap.values()).sort(
+	(a, b) => b.year - a.year || b.month - a.month,
+);
+
+function fmtDate(d: Date) {
+	const date = new Date(d);
+	return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
+}
+---
+
+<MainGridLayout title={categoryName} description={`${categoryName} 카테고리 글`}>
+    <div class="flex flex-col gap-4">
+        <!-- Category header -->
+        <div class="card-base z-10 px-6 md:px-9 py-6 flex items-center gap-3">
+            <div class="w-1.5 h-8 rounded-full bg-[var(--primary)]"></div>
+            <h1 class="text-2xl md:text-3xl font-bold text-90">{categoryName}</h1>
+            <span class="text-50 text-sm ml-1">{posts.length} posts</span>
+        </div>
+
+        {groups.map((group) => (
+            <section class="card-base z-10 px-6 md:px-9 py-6">
+                <!-- Month heading -->
+                <div class="flex items-baseline gap-2 mb-5">
+                    <span class="text-xl font-bold text-90">{group.year}년 {group.month}월</span>
+                    <span class="text-30 text-sm">{group.posts.length}</span>
+                </div>
+
+                <!-- Card grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {group.posts.map((post) => {
+                        const hasCover = !!post.data.image && post.data.image !== "";
+                        // Per-post hue offset for subtle placeholder variety
+                        const hueShift = ((post.slug.split("").reduce((a, c) => a + c.charCodeAt(0), 0)) % 60) - 30;
+                        return (
+                            <a href={getPostUrlBySlug(post.slug)} aria-label={post.data.title}
+                               class="group flex flex-col rounded-xl overflow-hidden bg-[var(--btn-regular-bg)] hover:bg-[var(--btn-regular-bg-hover)] transition active:scale-[0.98]">
+                                <!-- Thumbnail -->
+                                <div class="relative w-full aspect-video overflow-hidden">
+                                    {hasCover ? (
+                                        <ImageWrapper src={post.data.image} alt={post.data.title}
+                                            class="w-full h-full object-cover transition group-hover:scale-105" />
+                                    ) : (
+                                        <div class="w-full h-full transition group-hover:scale-105"
+                                             style={`background: linear-gradient(135deg, oklch(0.88 0.06 calc(var(--hue) + ${hueShift})), oklch(0.72 0.13 calc(var(--hue) + ${hueShift} + 25)));`}>
+                                        </div>
+                                    )}
+                                </div>
+                                <!-- Body -->
+                                <div class="flex flex-col gap-1 px-4 py-3">
+                                    <h2 class="font-bold text-90 leading-snug line-clamp-2 group-hover:text-[var(--primary)] transition">
+                                        {post.data.title}
+                                    </h2>
+                                    <div class="flex items-center gap-2 text-30 text-xs">
+                                        <time>{fmtDate(post.data.published)}</time>
+                                        {post.data.tags?.length > 0 && (
+                                            <span class="truncate">{post.data.tags.slice(0, 3).map((t) => `#${t}`).join(" ")}</span>
+                                        )}
+                                    </div>
+                                </div>
+                            </a>
+                        );
+                    })}
+                </div>
+            </section>
+        ))}
+    </div>
+</MainGridLayout>
