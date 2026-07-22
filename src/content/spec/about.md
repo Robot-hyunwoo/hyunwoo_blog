@@ -30,23 +30,29 @@ HD Map 지도 변환을 다루고 있습니다.
 
 ## 주요 프로젝트
 
-- **3D LiDAR SLAM** (2024.02~08) — Wheel Odometry·IMU Factor를 통합한 Factor Graph 시스템, IMU-Wheel 비교 기반 Slip 감지. 2D SLAM 대비 평균 위치 오차 약 54% 감소
-- **Lifelong SLAM** (2023.11~2024.01) — 오픈소스 커스터마이징을 통한 맵 연장·수정, 기존 맵 고정 기능. 맵핑 실패 현장 2곳 문제 해결
-- **2D Pose Graph SLAM Optimization** (2023.06~11) — Scan Match Score 기반 Node Optimization, 비동기 처리 구조 설계. 200m × 200m 대규모 영역 맵핑 성공
-- **Landmark SLAM** (2023.06~11) — AprilTag/QR 기반 Landmark 인식과 Loop Closure, 2D LiDAR 실패 구간의 위치 복구
-- **Localization Fusion Module** (2025.01~04) — robot_localization 기반 센서 융합 아키텍처 재설계, AMCL 통합. TF 출력 12Hz → 30Hz (약 2.5배)
-- **Encoder Odometry** (2022.01~03) — Encoder 기반 Odometry 설계, Optitrack 검증. 평균 위치 오차 약 80% 감소 (5.2cm → 1.1cm)
+- **3D LiDAR SLAM** (2024.02 ~ 08)<br>
+  Wheel Odometry·IMU Factor를 통합한 Factor Graph 시스템, IMU-Wheel 비교 기반 Slip 감지. 2D SLAM 대비 평균 위치 오차 약 54% 감소
+- **Lifelong SLAM** (2023.11 ~ 2024.01)<br>
+  오픈소스 커스터마이징을 통한 맵 연장·수정, 기존 맵 고정 기능. 맵핑 실패 현장 2곳 문제 해결
+- **2D Pose Graph SLAM Optimization** (2023.06 ~ 11)<br>
+  Scan Match Score 기반 Node Optimization, 비동기 처리 구조 설계. 200m × 200m 대규모 영역 맵핑 성공
+- **Landmark SLAM** (2023.06 ~ 11)<br>
+  AprilTag/QR 기반 Landmark 인식과 Loop Closure, 2D LiDAR 실패 구간의 위치 복구
+- **Localization Fusion Module** (2025.01 ~ 04)<br>
+  robot_localization 기반 센서 융합 아키텍처 재설계, AMCL 통합. TF 출력 12Hz → 30Hz (약 2.5배)
+- **Encoder Odometry** (2022.01 ~ 03)<br>
+  Encoder 기반 Odometry 설계, Optitrack 검증. 평균 위치 오차 약 80% 감소 (5.2cm → 1.1cm)
 
 ## 특허
 
 그래프 기반 SLAM 및 로봇 자율주행 관련 등록 특허 (한국)
 
-- 그래프 기반 SLAM에서 생성되는 포즈 그래프의 **노드 최적화** — [KIPRIS](https://doi.org/10.8080/1020240118789)
-- **부분 매핑**으로부터 기 구축된 공간 정보와의 통합이 구현된 로봇 — [KIPRIS](https://doi.org/10.8080/1020240118790)
-- 그래프 기반 SLAM에서 생성되는 포즈 그래프의 **시각화** — [KIPRIS](https://doi.org/10.8080/1020240118791)
-- 포즈 그래프 상의 노드와 연계된 **observation 편집** — [KIPRIS](https://doi.org/10.8080/1020240118792)
-- **랜드마크**로부터 강건한 포즈 추정이 구현된 로봇의 자율 주행 — [KIPRIS](https://doi.org/10.8080/1020240118793)
-- 로봇의 주행 상태 및 주변 환경에 따라 **적응적으로 조정되는** SLAM — [KIPRIS](https://doi.org/10.8080/1020240118794)
+- 그래프 기반 SLAM에서 생성되는 **포즈 그래프의 노드 최적화** [[KIPRIS]](https://doi.org/10.8080/1020240118789)
+- **부분 매핑**으로부터 기 구축된 공간 정보와의 통합이 구현된 로봇 [[KIPRIS]](https://doi.org/10.8080/1020240118790)
+- 그래프 기반 SLAM에서 생성되는 **포즈 그래프의 시각화** [[KIPRIS]](https://doi.org/10.8080/1020240118791)
+- 포즈 그래프 상의 노드와 연계된 **observation 편집** [[KIPRIS]](https://doi.org/10.8080/1020240118792)
+- **랜드마크**로부터 강건한 포즈 추정이 구현된 로봇의 자율 주행 [[KIPRIS]](https://doi.org/10.8080/1020240118793)
+- 로봇의 주행 상태 및 **주변 환경에 따라 적응적으로 조정되는** SLAM [[KIPRIS]](https://doi.org/10.8080/1020240118794)
 
 ## 학력
 
