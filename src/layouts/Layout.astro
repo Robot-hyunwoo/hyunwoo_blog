@@ -450,17 +450,17 @@ const setup = () => {
             // above the main content, so navigating would land on the profile.
             // Scroll the main content into view instead. Run here (after the temp
             // page-height-extend is removed) so short pages don't bounce back up.
+            // Use scrollIntoView (not window.scrollTo) because on desktop widths
+            // OverlayScrollbars manages the body scroll and breaks window.scrollTo;
+            // the navbar offset is handled by scroll-mt on the main element.
             // Skip on wide screens, the home page, and hash links.
             if (window.innerWidth < 1024
                 && !pathsEqual(window.location.pathname, url('/'))
                 && !window.location.hash) {
                 const main = document.getElementById('swup-container');
                 if (main) {
-                    const navbar = document.getElementById('navbar-wrapper');
-                    const offset = (navbar?.offsetHeight ?? 72) + 12;
-                    const top = main.getBoundingClientRect().top + window.scrollY - offset;
                     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-                    window.scrollTo({ top: Math.max(0, top), behavior: reduce ? 'auto' : 'smooth' });
+                    main.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
                 }
             }
         }, 200)
