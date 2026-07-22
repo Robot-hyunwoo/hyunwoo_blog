@@ -1,6 +1,7 @@
 ---
 title: "Lifelong Mapping — 2D Pose Graph 연장·수정 SLAM"
 published: 2026-07-22
+updated: 2026-07-22
 description: "기존 맵을 고정한 채 수정·확장 구역을 연장 맵핑하는 Lifelong SLAM 개발기 — slam_toolbox 커스터마이징, TBB 병렬화로 TF Lookup 실패 해결"
 tags: [SLAM, PoseGraph, slam_toolbox, ROS]
 category: Project
@@ -59,3 +60,12 @@ lang: ko
 
 - TBB 기반 병렬 처리 기법 습득 및 적용 경험 확보
 - 시각화/센서 처리/메인 로직 간 프로세스 분리 설계의 중요성 재확인
+
+## 5️⃣ 데모
+
+<video controls muted preload="metadata" style="width:100%; border-radius:8px;">
+  <source src="/videos/lifelong-demo.webm" type="video/webm" />
+  브라우저가 video 태그를 지원하지 않습니다.
+</video>
+
+기존 맵을 고정한 상태에서 확장 구역을 연장 맵핑하는 Lifelong SLAM 동작 데모.
