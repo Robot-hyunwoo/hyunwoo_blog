@@ -29,4 +29,4 @@
 
 - GitHub: [github.com/Robot-hyunwoo](https://github.com/Robot-hyunwoo?tab=repositories)
 
-::github{repo="Robot-hyunwoo/hyunwoo_blog"}
+::github{repo="Robot-hyunwoo/robot-hyunwoo.github.io"}

@@ -29,13 +29,13 @@ tools: Bash, Read, Grep, Glob
 3. **GitHub Actions 완료 대기** (public API, 인증 불필요)
    ```bash
    SHA=$(git rev-parse --short HEAD)
-   until [ "$(curl -s 'https://api.github.com/repos/Robot-hyunwoo/hyunwoo_blog/actions/runs?per_page=1' \
+   until [ "$(curl -s 'https://api.github.com/repos/Robot-hyunwoo/robot-hyunwoo.github.io/actions/runs?per_page=1' \
      | python3 -c "import json,sys; r=json.load(sys.stdin)['workflow_runs'][0]; print(r['status'] if r['head_sha'].startswith('$SHA') else 'waiting')")" = "completed" ]; do sleep 20; done
    ```
    완료 후 conclusion을 확인한다. `failure`면 실패한 잡/스텝을 API로 조회해 원인을 반환한다.
 
 4. **배포 확인**
-   - 홈: `curl -s -o /dev/null -w "%{http_code}" https://robot-hyunwoo.github.io/hyunwoo_blog/` → 200
+   - 홈: `curl -s -o /dev/null -w "%{http_code}" https://robot-hyunwoo.github.io/` → 200
    - 슬러그를 받았으면: `.../posts/<슬러그>/` → 200 확인
 
 ## 출력 (최종 텍스트)

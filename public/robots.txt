@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://robot-hyunwoo.github.io/hyunwoo_blog/sitemap-index.xml
+Sitemap: https://robot-hyunwoo.github.io/sitemap-index.xml

@@ -1,6 +1,6 @@
 # hyunwoo_blog
 
-Robot-Hyunwoo's BLOG Web Page — https://robot-hyunwoo.github.io/hyunwoo_blog/
+Robot-Hyunwoo's BLOG Web Page — https://robot-hyunwoo.github.io/
 
 [Fuwari](https://github.com/saicaca/fuwari) (Astro) 테마 기반 개인 기술 블로그.
 글은 Notion에서 작성 후 마크다운으로 변환해 `src/content/posts/`에 추가한다.
@@ -10,7 +10,7 @@ Robot-Hyunwoo's BLOG Web Page — https://robot-hyunwoo.github.io/hyunwoo_blog/
 ```bash
 corepack enable        # pnpm 활성화 (최초 1회)
 pnpm install
-pnpm dev               # http://localhost:4321/hyunwoo_blog/
+pnpm dev               # http://localhost:4321/
 pnpm build             # 프로덕션 빌드 (dist/)
 ```
 

@@ -41,7 +41,7 @@ Agent 도구로 `blog-deployer`를 실행하고 커밋 메시지(`New post: <제
 
 반환값 처리:
 - `DEPLOYED: ...` → 사용자에게 최종 글 URL 보고:
-  `https://robot-hyunwoo.github.io/hyunwoo_blog/posts/<슬러그>/`
+  `https://robot-hyunwoo.github.io/posts/<슬러그>/`
 - `FAILED at ...` → 원인을 사용자에게 보고하고, 수정 가능하면 수정 후 blog-deployer 재실행
 
 ## 주의사항

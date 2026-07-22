@@ -1,14 +1,14 @@
 # CLAUDE.md
 
 이 저장소는 Fuwari(Astro) 테마 기반 개인 기술 블로그다.
-배포 주소: https://robot-hyunwoo.github.io/hyunwoo_blog/
+배포 주소: https://robot-hyunwoo.github.io/
 
 ## 명령어
 
 ```bash
 corepack enable                  # pnpm 활성화 (최초 1회)
 pnpm install --frozen-lockfile   # 의존성 설치
-pnpm dev                         # 개발 서버 → http://localhost:4321/hyunwoo_blog/
+pnpm dev                         # 개발 서버 → http://localhost:4321/
 pnpm build                       # 프로덕션 빌드 (dist/) — push 전 반드시 통과 확인
 ```
 
