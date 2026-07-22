@@ -39,7 +39,10 @@ export default defineConfig({
 			// the default value `transition-` cause transition delay
 			// when the Tailwind class `transition-all` is used
 			containers: ["main", "#toc"],
-			smoothScrolling: true,
+			// Instant scroll-to-top on navigation so it doesn't animate over (and
+			// override) our narrow-screen scroll-to-content. TOC anchor jumps
+			// become instant too, which is an acceptable trade-off.
+			smoothScrolling: false,
 			cache: true,
 			preload: true,
 			accessibility: true,

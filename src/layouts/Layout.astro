@@ -476,12 +476,16 @@ document.addEventListener('click', (e) => {
 	if (dest.hash) return;
 	if (pathsEqual(dest.pathname, url('/'))) return;
 	// Wait for the swup transition + client-side content to settle, then scroll.
-	setTimeout(() => {
+	// Retry at a few timepoints so a late content:replace / island re-hydration
+	// (e.g. the archive filter switching on same-path query navigation) can't
+	// leave us stuck at the top.
+	const scrollToContent = () => {
 		const main = document.getElementById('swup-container');
 		if (!main) return;
 		const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		main.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-	}, 400);
+	};
+	[350, 600, 850].forEach((t) => setTimeout(scrollToContent, t));
 }, true);
 
 let backToTopBtn = document.getElementById('back-to-top-btn');
