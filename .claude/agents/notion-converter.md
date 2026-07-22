@@ -25,7 +25,7 @@ frontmatter (이 스키마 외 필드 금지):
 ```yaml
 ---
 title: "노션 페이지 제목"
-published: YYYY-MM-DD        # 노션 생성일, 없으면 오늘
+published: YYYY-MM-DD        # 발행 당일 날짜 (오늘) — 노션 생성일이 아님
 description: "한 줄 요약"     # 노션 '한 줄 요약' 속성 또는 본문 기반 1문장
 tags: [태그1, 태그2]          # 노션 Tag 속성 기반
 category: TBD                # 확정하지 말 것 — 메인 루프에서 사용자에게 확인
