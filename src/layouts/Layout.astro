@@ -145,6 +145,28 @@ const bannerOffset =
 
 		<slot name="head"></slot>
 
+		<!-- GoatCounter analytics (privacy-friendly, no cookies). count.js auto-counts the first load. -->
+		<script is:inline data-goatcounter="https://mine5264.goatcounter.com/count"
+				async src="https://gc.zgo.at/count.js"></script>
+		<script is:inline>
+			// Count swup (SPA) navigations too, since count.js only auto-counts the first load.
+			(function () {
+				function countView() {
+					if (window.goatcounter && window.goatcounter.count) {
+						window.goatcounter.count({ path: location.pathname + location.search });
+					}
+				}
+				function hookSwup() {
+					if (window.swup && window.swup.hooks) {
+						window.swup.hooks.on('page:view', countView);
+						return true;
+					}
+					return false;
+				}
+				if (!hookSwup()) document.addEventListener('swup:enable', hookSwup);
+			})();
+		</script>
+
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
 
 	</head>

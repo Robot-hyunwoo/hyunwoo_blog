@@ -9,8 +9,43 @@ const currentYear = new Date().getFullYear();
 <!--<div class="border-t border-[var(&#45;&#45;primary)] mx-16 border-dashed py-8 max-w-[var(&#45;&#45;page-width)] flex flex-col items-center justify-center px-6">-->
 <div class="transition border-t border-black/10 dark:border-white/15 my-10 border-dashed mx-32"></div>
 <!--<div class="transition bg-[oklch(92%_0.01_var(&#45;&#45;hue))] dark:bg-black rounded-2xl py-8 mt-4 mb-8 flex flex-col items-center justify-center px-6">-->
-<div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6">
+<div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center gap-1.5 px-6">
     <div class="transition text-50 text-sm text-center">
         &copy; <span id="copyright-year">{currentYear}</span> Robot-Hyunwoo. All rights reserved.
     </div>
+    <div id="visitor-stats" class="transition text-30 text-xs text-center hidden items-center justify-center gap-1.5">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span>방문자 <span id="gc-visitors">–</span> · 조회수 <span id="gc-views">–</span></span>
+    </div>
 </div>
+
+<script is:inline>
+    // Fetch the site-wide total from GoatCounter's public counter endpoint.
+    (function () {
+        const ENDPOINT = "https://mine5264.goatcounter.com/counter/TOTAL.json";
+        function update() {
+            const box = document.getElementById("visitor-stats");
+            if (!box) return;
+            fetch(ENDPOINT)
+                .then((r) => (r.ok ? r.json() : Promise.reject()))
+                .then((d) => {
+                    const v = document.getElementById("gc-visitors");
+                    const p = document.getElementById("gc-views");
+                    if (v) v.textContent = d.count_unique || d.count || "0";
+                    if (p) p.textContent = d.count || "0";
+                    box.classList.remove("hidden");
+                    box.classList.add("flex");
+                })
+                .catch(() => {});
+        }
+        update();
+        function hook() {
+            if (window.swup && window.swup.hooks) {
+                window.swup.hooks.on("page:view", update);
+                return true;
+            }
+            return false;
+        }
+        if (!hook()) document.addEventListener("swup:enable", hook);
+    })();
+</script>
