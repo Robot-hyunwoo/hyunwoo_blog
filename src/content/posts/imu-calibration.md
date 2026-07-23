@@ -2,7 +2,7 @@
 title: "IMU Calibration — Mount 보정·Gyro Calibration 및 Slip 감지"
 published: 2026-07-23T11:30:00+09:00
 description: "IMU Mount 오차 보정과 Bias/Gyro Calibration으로 정제된 IMU 데이터 산출 — Deadzone 적용과 Encoder 융합 기반 Slip 감지로 제자리 회전 오차 약 20% 감소"
-image: ""
+image: "/posts/imu-calibration/cover.png"
 tags: [Sensor, IMU, Calibration, SlipDetection]
 category: Project
 draft: false

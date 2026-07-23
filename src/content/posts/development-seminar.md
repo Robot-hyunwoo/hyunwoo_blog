@@ -2,7 +2,7 @@
 title: "Development Seminar — 사내 SLAM 기술 세미나 발표"
 published: 2026-07-23T11:15:00+09:00
 description: "2D SLAM 최적화 및 Landmark SLAM 신규 개발 내용을 사내 세미나로 공유 — 기술 발표를 통한 피드백 수렴과 세미나 문화 정착"
-image: ""
+image: "/posts/development-seminar/cover.png"
 tags: [Seminar, SLAM, Presentation]
 category: Project
 draft: false

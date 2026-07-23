@@ -2,7 +2,7 @@
 title: "Odometry Enhancement — Encoder 기반 Odometry 정확도 개선"
 published: 2026-07-23T10:30:00+09:00
 description: "DD·QD 타입 로봇의 Odometry 정확도 개선 — Wheel Encoder 기반 이동량 산출과 Overflow 보정으로 평균 위치 오차 약 80% 감소 (5.2cm → 1.1cm)"
-image: ""
+image: "/posts/odometry-enhancement/cover.png"
 tags: [Localization, Odometry, Encoder, Sensor]
 category: Project
 draft: false

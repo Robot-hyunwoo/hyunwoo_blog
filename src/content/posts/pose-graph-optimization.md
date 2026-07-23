@@ -2,7 +2,7 @@
 title: "2D Pose Graph Based SLAM Optimization — 대규모 맵핑·리소스 최적화"
 published: 2026-07-23T11:00:00+09:00
 description: "Scan Match Score 기반 Node 최적화와 비동기 처리 구조로 2D Pose Graph SLAM 강건화 — 200m×200m 대규모 영역 맵핑 성공 및 Vertex 생성 안정화"
-image: ""
+image: "/posts/pose-graph-optimization/cover.png"
 tags: [SLAM, PoseGraph, Optimization, LiDAR]
 category: Project
 draft: false
