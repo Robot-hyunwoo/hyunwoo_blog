@@ -52,6 +52,12 @@ lang: ko
 (노션 MCP 커넥터 필요). 수동 발행은: 마크다운 작성 → `pnpm build` 통과 확인 →
 commit → push → GitHub Actions가 자동 배포 (2~3분).
 
+**push 후 배포 확인 (필수):** push로 끝내지 말고 배포 완료까지 확인한다.
+
+1. `gh run watch --exit-status <run-id>` (또는 `gh run list`)로 "Deploy to GitHub Pages" 워크플로우가 success로 끝나는지 확인
+2. 변경된 페이지·이미지 URL을 curl로 확인 (HTTP 200 및 내용 반영):
+   `curl -s -o /dev/null -w "%{http_code}" https://robot-hyunwoo.github.io/<경로>`
+
 ## 규칙
 
 - 코드 주석은 영어로 작성한다.
