@@ -86,6 +86,10 @@ function fmtDate(d: Date) {
                         const hasCover = !!post.data.image && post.data.image !== "";
                         // Per-post hue offset for subtle placeholder variety
                         const hueShift = ((post.slug.split("").reduce((a, c) => a + c.charCodeAt(0), 0)) % 60) - 30;
+                        // Split "Name — subtitle" → bracketed head + subtitle below
+                        const titleParts = post.data.title.split("—");
+                        const titleHead = titleParts[0].trim();
+                        const titleRest = titleParts.slice(1).join("—").trim();
                         return (
                             <a href={getPostUrlBySlug(post.slug)} aria-label={post.data.title}
                                class="group flex flex-col rounded-xl overflow-hidden bg-[var(--btn-regular-bg)] hover:bg-[var(--btn-regular-bg-hover)] transition active:scale-[0.98]">
@@ -102,9 +106,16 @@ function fmtDate(d: Date) {
                                 </div>
                                 <!-- Body -->
                                 <div class="flex flex-col gap-1 px-4 py-3">
-                                    <h2 class="font-bold text-90 leading-snug line-clamp-2 group-hover:text-[var(--primary)] transition">
-                                        {post.data.title}
-                                    </h2>
+                                    {titleRest ? (
+                                        <h2 class="flex flex-col gap-0.5 leading-snug">
+                                            <span class="text-[var(--primary)] text-sm font-semibold">[{titleHead}]</span>
+                                            <span class="font-bold text-90 line-clamp-2 group-hover:text-[var(--primary)] transition">{titleRest}</span>
+                                        </h2>
+                                    ) : (
+                                        <h2 class="font-bold text-90 leading-snug line-clamp-2 group-hover:text-[var(--primary)] transition">
+                                            {post.data.title}
+                                        </h2>
+                                    )}
                                     <div class="flex items-center gap-2 text-30 text-xs">
                                         <time>{fmtDate(post.data.published)}</time>
                                         {post.data.tags?.length > 0 && (
