@@ -68,5 +68,9 @@ lang: ko
 
 **Pose Graph Optimization Simulation**
 
-<!-- VIDEO_PENDING: /videos/pose-graph-optimization-demo.webm (노션 첨부 sr-slam-pose-graph-optimization.webm) -->
-> 데모 영상 준비 중입니다.
+<video controls muted preload="metadata" style="width:100%; border-radius:8px;">
+  <source src="/videos/pose-graph-optimization-demo.webm" type="video/webm" />
+  브라우저가 video 태그를 지원하지 않습니다.
+</video>
+
+Scan Match Score 기반 Node 최적화로 Pose Graph를 정리하는 시뮬레이션 데모.
