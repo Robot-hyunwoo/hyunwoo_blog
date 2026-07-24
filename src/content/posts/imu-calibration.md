@@ -71,5 +71,9 @@ lang: ko
 
 **Slip Detection Demo**
 
-<!-- VIDEO_PENDING: /videos/slip-detection-demo.webm (노션 첨부 slip_detection_demo.webm) -->
-> 데모 영상 준비 중입니다.
+<video controls muted preload="metadata" style="width:100%; border-radius:8px;">
+  <source src="/videos/slip-detection-demo.webm" type="video/webm" />
+  브라우저가 video 태그를 지원하지 않습니다.
+</video>
+
+정제된 IMU와 Encoder 데이터를 융합해 구동축 Slip을 감지하는 데모.
